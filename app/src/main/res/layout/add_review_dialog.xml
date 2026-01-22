@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_standard">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/commentInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_standard"
+        android:hint="@string/comment_review_dialog"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusBottomEnd="@dimen/default_corner_radius"
+        app:boxCornerRadiusBottomStart="@dimen/default_corner_radius"
+        app:boxCornerRadiusTopEnd="@dimen/default_corner_radius"
+        app:boxCornerRadiusTopStart="@dimen/default_corner_radius"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/reviewCommentInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:minLines="@integer/edit_text_min_lines" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ratingInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_standard"
+        android:hint="@string/rating_review_dialog"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusBottomEnd="@dimen/default_corner_radius"
+        app:boxCornerRadiusBottomStart="@dimen/default_corner_radius"
+        app:boxCornerRadiusTopEnd="@dimen/default_corner_radius"
+        app:boxCornerRadiusTopStart="@dimen/default_corner_radius"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/commentInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/reviewRatingInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="@integer/edit_text_max_length" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/login_fragment">
+
+    <fragment
+        android:id="@+id/login_fragment"
+        android:name="com.inesengel.travelapp.UI.view.fragments.LoginFragment"
+        android:label="Login Fragment"
+        tools:layout="@layout/login_screen_fragment">
+        <action
+            android:id="@+id/action_navigation_from_login_to_register_fragment"
+            app:destination="@+id/register_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/register_fragment"
+        android:name="com.inesengel.travelapp.UI.view.fragments.RegisterFragment"
+        android:label="Register Fragment"
+        tools:layout="@layout/register_screen_fragment">
+        <action
+            android:id="@+id/action_navigation_from_register_to_login_fragment"
+            app:destination="@+id/login_fragment" />
+    </fragment>
+</navigation>

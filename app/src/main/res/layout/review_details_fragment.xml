@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_theme_surface"
+    android:padding="@dimen/padding_standard">
+
+    <LinearLayout
+        android:id="@+id/headerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/padding_small"
+            android:fontFamily="@font/be_vietnam_pro_medium"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_medium"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/overallScoreTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/be_vietnam_pro_light"
+            android:textColor="@color/md_theme_onPrimaryFixed"
+            android:textSize="@dimen/text_view_large"
+            android:textStyle="bold" />
+
+        <RatingBar
+            android:id="@+id/overallRatingBar"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:numStars="@integer/number_stars"
+            android:progressTint="@color/yellow"
+            android:secondaryProgressTint="@color/md_theme_secondaryFixed_highContrast"
+            android:stepSize="@fraction/overall_rating_step_size"
+            android:theme="@style/Widget.AppCompat.RatingBar.Indicator" />
+
+        <TextView
+            android:id="@+id/reviewCountTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/rating_bar_margin_top"
+            android:fontFamily="@font/be_vietnam_pro_light"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/text_medium" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large_margin_top"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/rowExcellent"
+                layout="@layout/item_rating_progress" />
+
+            <include
+                android:id="@+id/rowGood"
+                layout="@layout/item_rating_progress" />
+
+            <include
+                android:id="@+id/rowAverage"
+                layout="@layout/item_rating_progress" />
+
+            <include
+                android:id="@+id/rowBelowAverage"
+                layout="@layout/item_rating_progress" />
+
+            <include
+                android:id="@+id/rowPoor"
+                layout="@layout/item_rating_progress" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/view_small_height"
+            android:layout_marginTop="@dimen/large_margin_top"
+            android:background="@color/md_theme_secondaryFixed_highContrast" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/reviewsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/padding_small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerContainer" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

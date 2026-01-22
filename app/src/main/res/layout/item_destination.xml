@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_large">
+
+    <ImageView
+        android:id="@+id/destination_image_view"
+        android:layout_width="@dimen/high_image_width"
+        android:layout_height="@dimen/high_image_heigth"
+        android:layout_marginTop="@dimen/large_margin_top"
+        android:scaleType="centerCrop"
+        android:src="@drawable/no_picture"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/destination_name_text_view"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/small_height_text_view"
+        android:layout_marginStart="@dimen/margin_start"
+        android:fontFamily="@font/aboreto_regular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/destination_image_view"
+        app:layout_constraintTop_toTopOf="@id/destination_image_view" />
+
+
+    <TextView
+        android:id="@+id/destination_country_text_view"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/small_height_text_view"
+        android:fontFamily="@font/aboreto_regular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/destination_name_text_view"
+        app:layout_constraintTop_toBottomOf="@id/destination_name_text_view" />
+
+    <TextView
+        android:id="@+id/destination_price_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top"
+        android:fontFamily="@font/aboreto_regular"
+        android:textColor="?attr/colorPrimary"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/destination_country_text_view"
+        app:layout_constraintTop_toBottomOf="@id/destination_country_text_view" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

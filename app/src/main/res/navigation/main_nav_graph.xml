@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/main_destination_fragment">
+
+    <fragment
+        android:id="@+id/main_destination_fragment"
+        android:name="com.inesengel.travelapp.UI.view.fragments.MainDestinationListFragment"
+        android:label="fragment_destination_list"
+        tools:layout="@layout/main_destinations_list_fragment">
+        <action
+            android:id="@+id/action_list_to_detail"
+            app:destination="@id/destination_detail_fragment" />
+
+        <action
+            android:id="@+id/action_to_add_destination"
+            app:destination="@id/add_destination_fragment" />
+
+        <action
+            android:id="@+id/action_to_favorite_destinations"
+            app:destination="@id/favorites_fragment" />
+
+        <action
+            android:id="@+id/action_to_profile"
+            app:destination="@+id/profile_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/destination_detail_fragment"
+        android:name="com.inesengel.travelapp.UI.view.fragments.DestinationDetailFragment"
+        android:label="fragment_destination_detail"
+        tools:layout="@layout/destination_details_fragment">
+
+        <argument
+            android:name="destination_id"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/add_destination_fragment"
+        android:name="com.inesengel.travelapp.UI.view.fragments.AddDestinationFragment"
+        android:label="Add Destination"
+        tools:layout="@layout/add_destination_fragment" />
+
+    <fragment
+        android:id="@+id/favorites_fragment"
+        android:name="com.inesengel.travelapp.UI.view.fragments.FavoritesFragment"
+        android:label="Get Favorite Destinations"
+        tools:layout="@layout/favorites_fragment" />
+
+    <fragment
+        android:id="@+id/profile_fragment"
+        android:name="com.inesengel.travelapp.UI.view.fragments.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/profile_fragment">
+
+        <action
+            android:id="@+id/action_profile_to_settings"
+            app:destination="@+id/settings_fragment" />
+
+
+        <action
+            android:id="@+id/action_profile_to_personal_data"
+            app:destination="@+id/personal_data_fragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/settings_fragment"
+        android:name="com.inesengel.travelapp.UI.view.fragments.SettingsFragment"
+        android:label="SettingsFragment" />
+
+    <fragment
+        android:id="@+id/personal_data_fragment"
+        android:name="com.inesengel.travelapp.UI.view.fragments.PersonalDataFragment"
+        android:label="PersonalDataFragment" />
+</navigation>

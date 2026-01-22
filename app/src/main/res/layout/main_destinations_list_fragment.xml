@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/destination_list_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/welcome_text_view"
+        android:layout_width="@dimen/null_width"
+        android:layout_height="@dimen/medium_height"
+        android:layout_marginTop="@dimen/large_margin_top"
+        android:layout_marginEnd="@dimen/margin_end"
+        android:fontFamily="@font/aboreto_regular"
+        android:text="@string/main_title"
+        android:textSize="@dimen/text_large"
+        app:layout_constraintBottom_toBottomOf="@+id/main_button_settings"
+        app:layout_constraintEnd_toStartOf="@+id/main_button_settings"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/main_button_settings" />
+
+    <ImageButton
+        android:id="@+id/main_button_settings"
+        style="@style/IconButton"
+        android:layout_width="@dimen/medium_width_button"
+        android:layout_height="@dimen/medium_height"
+        android:contentDescription="@string/desc_settings"
+        android:src="@drawable/settings_24px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/search_bar_edit_text"
+        style="@style/StandardInput"
+        android:layout_width="@dimen/null_width"
+        android:layout_height="@dimen/medium_height"
+        android:layout_marginTop="@dimen/margin_top"
+        android:layout_marginEnd="@dimen/margin_end"
+        android:hint="@string/search_destinations"
+        android:padding="@dimen/padding_standard"
+        app:layout_constraintEnd_toStartOf="@+id/main_filter_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_button_settings" />
+
+    <ImageButton
+        android:id="@+id/main_filter_button"
+        style="@style/IconButton"
+        android:layout_width="@dimen/medium_width_button"
+        android:layout_height="@dimen/medium_height"
+        android:contentDescription="@string/filter"
+        android:src="@drawable/filter_alt_24px"
+        app:layout_constraintBottom_toBottomOf="@id/search_bar_edit_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/search_bar_edit_text" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/destinations_recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_top"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/logout_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_bar_edit_text"
+        tools:listitem="@layout/item_destination" />
+
+    <ProgressBar
+        android:id="@+id/loadingProgressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <ImageButton
+        android:id="@+id/logout_button"
+        style="@style/IconButton"
+        android:layout_width="@dimen/medium_width_button"
+        android:layout_height="@dimen/medium_height"
+        android:contentDescription="@string/logout"
+        android:src="@drawable/logout_24px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/send_broadcast_button"
+        android:layout_width="@dimen/medium_height"
+        android:layout_height="@dimen/medium_height"
+        android:layout_marginEnd="@dimen/margin_end"
+        android:contentDescription="@string/broadcast_button"
+        android:src="@drawable/check_circle_24px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/logout_button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

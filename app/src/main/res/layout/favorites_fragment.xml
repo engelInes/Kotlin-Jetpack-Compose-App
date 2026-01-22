@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_theme_surface"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/padding_standard"
+    android:paddingBottom="@dimen/padding_standard">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/top_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginTop="@dimen/padding_large"
+        android:background="@color/md_theme_surface"
+        app:navigationIcon="@drawable/arrow_back_com"
+        app:navigationIconTint="@color/md_theme_onBackground_mediumContrast"
+        app:title=""
+        app:titleTextAppearance="@style/ToolbarTitleText" />
+
+    <TextView
+        android:id="@+id/screen_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_small"
+        android:fontFamily="@font/be_vietnam_pro_medium"
+        android:lineSpacingExtra="@dimen/extra_line_spacing_default"
+        android:maxLines="@integer/title_lines"
+        android:text="@string/favorite_destinations_screen_title"
+        android:textColor="@color/md_theme_onPrimaryFixed"
+        android:textSize="@dimen/text_extra_large" />
+
+    <TextView
+        android:id="@+id/empty_state_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_margin_top"
+        android:fontFamily="@font/be_vietnam_pro_medium"
+        android:gravity="center"
+        android:text="@string/no_favorites_added_message"
+        android:textColor="@color/md_theme_secondaryFixed_mediumContrast"
+        android:visibility="gone" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favorites_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/large_margin_top"
+        android:layout_weight="@integer/view_weight"
+        android:clipToPadding="false" />
+
+</LinearLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/card_image_height"
+    android:layout_marginBottom="@dimen/margin_end"
+    app:cardCornerRadius="@dimen/default_corner_radius"
+    app:cardElevation="@dimen/default_card_elevation">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/destination_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/no_picture" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bottom_gradient_overlay" />
+
+        <ImageView
+            android:id="@+id/favorite_icon"
+            android:layout_width="@dimen/standard_height"
+            android:layout_height="@dimen/standard_height"
+            android:layout_gravity="top|start"
+            android:layout_margin="@dimen/padding_standard"
+            android:src="@drawable/heart_solid_full"
+            app:tint="@android:color/holo_red_light" />
+
+        <TextView
+            android:id="@+id/destination_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:layout_margin="@dimen/padding_standard"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_medium"
+            android:textStyle="bold" />
+
+    </FrameLayout>
+</com.google.android.material.card.MaterialCardView>

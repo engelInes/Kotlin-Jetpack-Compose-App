@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="HeaderText" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/acme_regular</item>
+    </style>
+
+    <style name="LabelText" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:fontFamily">@font/acme_regular</item>
+    </style>
+
+    <style name="BodyText" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:fontFamily">@font/acme_regular</item>
+    </style>
+
+    <style name="StandardInput" parent="Widget.Material3.TextInputEditText.OutlinedBox">
+        <item name="android:layout_height">@dimen/medium_height</item>
+        <item name="android:layout_width">@dimen/high_width</item>
+        <item name="android:padding">@dimen/padding_standard</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:backgroundTint">?attr/colorPrimary</item>
+        <item name="android:hint">@string/enter_input</item>
+    </style>
+
+    <style name="StandardTextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:layout_height">@dimen/text_layout_small</item>
+        <item name="android:layout_width">@dimen/high_width</item>
+        <item name="android:backgroundTint">?attr/colorPrimary</item>
+    </style>
+
+    <style name="StandardEditTextLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="android:layout_height">@dimen/text_layout_small</item>
+        <item name="android:layout_width">@dimen/high_width</item>
+        <item name="android:padding">@dimen/padding_standard</item>
+        <item name="android:fontFamily">@font/acme_regular</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:hint">@string/enter_input</item>
+    </style>
+
+    <style name="PrimaryButton" parent="Widget.Material3.Button">
+        <item name="android:backgroundTint">?attr/colorPrimary</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="SecondaryButton" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="IconButton" parent="Widget.AppCompat.ImageButton">
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:tint">?attr/colorOnSurface</item>
+        <item name="android:contentDescription">@null</item>
+    </style>
+
+    <style name="CircleImage">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="Test" parent="Widget.MaterialComponents.CardView">
+        <item name="strokeWidth">0dp</item>
+        <item name="cardForegroundColor">@android:color/transparent</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="colorPrimary">@color/test_color</item>
+        <item name="colorSurface">@color/test_color</item>
+        <item name="colorOnSurface">@color/test_color</item>
+    </style>
+
+    <style name="ToolbarTitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:fontFamily">@font/be_vietnam_pro_medium</item>
+    </style>
+
+</resources>

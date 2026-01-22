@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_fragment_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:padding="@dimen/padding_large">
+
+    <TextView
+        android:id="@+id/title_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_view_margin_top_large"
+        android:fontFamily="@font/be_vietnam_pro_medium"
+        android:text="@string/login_title"
+        android:textColor="@color/md_theme_secondaryContainer"
+        android:textSize="@dimen/text_large"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/subtitle_login_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/textview_small_margin"
+        android:fontFamily="@font/be_vietnam_pro_light"
+        android:text="@string/login_subtitle"
+        android:textColor="@color/md_theme_scrim_highContrast"
+        android:textSize="@dimen/text_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_login" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/email_text_input_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_view_margin_top_large"
+        app:boxCornerRadiusBottomEnd="@dimen/high_corner_radius"
+        app:boxCornerRadiusBottomStart="@dimen/high_corner_radius"
+        app:boxCornerRadiusTopEnd="@dimen/high_corner_radius"
+        app:boxCornerRadiusTopStart="@dimen/high_corner_radius"
+        app:boxStrokeColor="@color/md_theme_secondaryContainer"
+        app:boxStrokeWidth="@dimen/small_thickness"
+        app:boxStrokeWidthFocused="@dimen/small_thickness"
+        app:hintEnabled="false"
+        app:layout_constraintTop_toBottomOf="@+id/subtitle_login_text_view"
+        app:startIconDrawable="@android:drawable/sym_action_email"
+        app:startIconTint="@color/md_theme_scrim_highContrast"
+        app:startIconTintMode="src_in">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/acme_regular"
+            android:hint="@string/username"
+            android:inputType="textEmailAddress"
+            android:paddingTop="@dimen/padding_standard"
+            android:paddingBottom="@dimen/padding_standard"
+            android:textColor="@color/md_theme_secondaryContainer" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password_text_input_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top"
+        app:boxCornerRadiusBottomEnd="@dimen/high_corner_radius"
+        app:boxCornerRadiusBottomStart="@dimen/high_corner_radius"
+        app:boxCornerRadiusTopEnd="@dimen/high_corner_radius"
+        app:boxCornerRadiusTopStart="@dimen/high_corner_radius"
+        app:boxStrokeColor="@color/md_theme_secondaryContainer"
+        app:boxStrokeWidth="@dimen/small_thickness"
+        app:boxStrokeWidthFocused="@dimen/small_thickness"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/md_theme_scrim_highContrast"
+        app:hintEnabled="false"
+        app:layout_constraintTop_toBottomOf="@id/email_text_input_layout"
+        app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
+        app:startIconTint="@color/md_theme_scrim_highContrast"
+        app:startIconTintMode="src_in">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/acme_regular"
+            android:hint="@string/login_password_label"
+            android:inputType="textPassword"
+            android:paddingTop="@dimen/padding_standard"
+            android:paddingBottom="@dimen/padding_standard"
+            android:textColor="@color/md_theme_secondaryContainer" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <CheckBox
+        android:id="@+id/keep_logged_in_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top"
+        android:buttonTint="@color/md_theme_secondaryContainer"
+        android:fontFamily="@font/be_vietnam_pro_light"
+        android:text="@string/keep_me_logged_in"
+        android:textColor="@color/md_theme_scrim_highContrast"
+        android:textSize="@dimen/text_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/password_text_input_layout" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/login_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/submit_button_height"
+        android:layout_marginTop="@dimen/button_large_margin_top"
+        android:backgroundTint="@color/md_theme_secondaryContainer"
+        android:enabled="false"
+        android:fontFamily="@font/be_vietnam_pro_light"
+        android:text="@string/btn_sign_in"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_medium"
+        app:cornerRadius="@dimen/high_corner_radius"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/keep_logged_in_checkbox" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_bottom_large"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/not_account_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/be_vietnam_pro_light"
+            android:text="@string/not_account"
+            android:textColor="@color/md_theme_secondaryFixedDim_mediumContrast" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/sign_up_button"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:fontFamily="@font/acme_regular"
+            android:text="@string/btn_go_to_register"
+            android:textAllCaps="false"
+            android:textColor="@color/md_theme_secondaryContainer"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/toolbar_margin_top"
+    android:background="@color/md_theme_surface"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_height"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/padding_standard"
+        android:paddingEnd="@dimen/padding_standard">
+
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="@dimen/medium_width"
+            android:layout_height="@dimen/standard_height"
+            android:contentDescription="@string/back"
+            android:padding="@dimen/padding_small"
+            android:src="@drawable/arrow_back_com"
+            app:tint="@color/md_theme_onBackground_mediumContrast" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_view_margin_start"
+            android:fontFamily="@font/be_vietnam_pro_medium"
+            android:text="@string/personal_information_label"
+            android:textColor="@color/md_theme_onPrimaryFixed"
+            android:textSize="@dimen/toolbar_text" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/column_standard_padding">
+
+            <FrameLayout
+                android:layout_width="@dimen/item_width_large"
+                android:layout_height="@dimen/item_height_large"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/margin_bottom_extra_large">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/profileImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/user"
+                    app:shapeAppearanceOverlay="@style/CircleImage"
+                    app:strokeColor="@color/md_theme_outlineVariant"
+                    app:strokeWidth="@dimen/stroke_width" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_bottom_small"
+                android:text="@string/username"
+                android:textColor="@color/md_theme_onPrimaryFixed"
+                android:textSize="@dimen/text_medium" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/username_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_bottom_large"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="@dimen/high_corner_radius"
+                app:boxCornerRadiusBottomStart="@dimen/high_corner_radius"
+                app:boxCornerRadiusTopEnd="@dimen/high_corner_radius"
+                app:boxCornerRadiusTopStart="@dimen/high_corner_radius"
+                app:boxStrokeColor="@color/md_theme_secondaryFixed_highContrast">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/usernameInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/item_height"
+                    android:background="@null"
+                    android:hint="@string/username_hint"
+                    android:paddingStart="@dimen/edit_text_padding"
+                    android:paddingEnd="@dimen/edit_text_padding"
+                    android:textColor="@color/md_theme_onPrimaryFixed" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padding_small"
+                android:text="@string/email_text_view"
+                android:textColor="@color/md_theme_onPrimaryFixed"
+                android:textSize="@dimen/text_medium" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/email_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/text_input_margin_bottom"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="@dimen/high_corner_radius"
+                app:boxCornerRadiusBottomStart="@dimen/high_corner_radius"
+                app:boxCornerRadiusTopEnd="@dimen/high_corner_radius"
+                app:boxCornerRadiusTopStart="@dimen/high_corner_radius"
+                app:boxStrokeColor="@color/md_theme_secondaryFixed_highContrast">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emailInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/item_height"
+                    android:background="@null"
+                    android:hint="@string/hint_email"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="@dimen/edit_text_padding"
+                    android:paddingEnd="@dimen/edit_text_padding"
+                    android:textColor="@color/md_theme_onPrimaryFixed" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/saveButton"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_height"
+                android:backgroundTint="@color/md_theme_onPrimaryFixedButton"
+                android:fontFamily="@font/be_vietnam_pro_medium"
+                android:text="@string/save"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                app:cornerRadius="@dimen/high_corner_radius" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margin_top"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

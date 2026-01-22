@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <fraction name="map_height_percentage">0.45</fraction>
+    <fraction name="view_constraint_height">0.6</fraction>
+    <fraction name="overall_rating_step_size">0.1</fraction>
+</resources>

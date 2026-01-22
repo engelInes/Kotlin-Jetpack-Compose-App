@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <permission
+        android:name="com.songcatalogueapp.SOUND_SCOUT_PERMISSION"
+        android:protectionLevel="signature" />
+
+    <permission android:name="com.inesengel.travelapp.permission.TRAVEL_PERMISSION" />
+
+    <uses-permission android:name="com.inesengel.travelapp.permission.TRAVEL_PERMISSION" />
+
+    <uses-permission android:name="com.inesengel.travelapp.permission.ACCESS_MY_ENTITIES" />
+    <uses-permission android:name="com.annaaa.plantstoreapp.permission.PLANT_PERMISSION" />
+    <uses-permission android:name="com.app.movieapp.PERMISSION_CUSTOM" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name="com.inesengel.travelapp.TravelApp"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/app_logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/app_logo_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".UI.view.activities.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".UI.view.activities.AuthActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".UI.view.activities.MainActivity"
+            android:enabled="true"
+            android:exported="true" />
+
+        <service
+            android:name=".UI.view.services.UserActivityService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <receiver
+            android:name=".UI.view.receivers.ColleagueReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="com.annaaa.plantstoreapp.permission.PLANT_PERMISSION">
+            <intent-filter>
+                <action android:name="com.annaaa.plantstoreapp.action.PLANTS" />
+            </intent-filter>
+
+        </receiver>
+
+        <receiver
+            android:name=".UI.view.receivers.BootBroadcastReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".UI.view.receivers.BatteryBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BATTERY_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

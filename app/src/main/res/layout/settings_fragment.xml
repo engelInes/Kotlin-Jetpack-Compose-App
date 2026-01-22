@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/toolbar_margin_top"
+    android:background="@color/md_theme_surface"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/top_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        app:navigationIcon="@drawable/arrow_back_com"
+        app:navigationIconTint="@color/md_theme_onBackground_mediumContrast"
+        app:title="@string/settings_label_name"
+        app:titleTextColor="@color/md_theme_onPrimaryFixed" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="@integer/view_weight">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_standard">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/white"
+                app:cardCornerRadius="@dimen/default_corner_radius"
+                app:cardElevation="@dimen/card_small_elevation">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/md_theme_surfaceContainerHigh_mediumContrast"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_standard">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/be_vietnam_pro_medium"
+                        android:text="@string/appearance"
+                        android:textColor="@color/md_theme_onSurface"
+                        android:textSize="@dimen/text_medium"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_standard"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/small_image_width"
+                            android:layout_height="@dimen/small_image_height"
+                            android:contentDescription="@string/dark_mode"
+                            android:src="@drawable/night_mode" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/padding_standard"
+                            android:layout_weight="@integer/view_weight"
+                            android:fontFamily="@font/be_vietnam_pro_light"
+                            android:text="@string/dark_mode_switch_text"
+                            android:textColor="@color/md_theme_onSurface"
+                            android:textSize="@dimen/text_medium" />
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/theme_switch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

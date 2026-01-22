@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/toolbar_margin_top"
+    android:background="@color/md_theme_surface"
+    android:fillViewport="true"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/top_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/md_theme_surface"
+
+        app:navigationIcon="@drawable/arrow_back_com"
+        app:navigationIconTint="@color/md_theme_onBackground_mediumContrast"
+        app:title="@string/user_profile_label"
+        app:titleCentered="true"
+        app:titleTextAppearance="@style/ToolbarTitleText"
+        app:titleTextColor="@color/md_theme_onPrimaryFixed" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/large_margin_start"
+            android:layout_marginTop="@dimen/large_margin_top"
+            android:layout_marginEnd="@dimen/large_margin_end"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/personalDataItem"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_height"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="0dp"
+                android:paddingEnd="@dimen/padding_standard">
+
+                <ImageView
+                    android:layout_width="@dimen/medium_width"
+                    android:layout_height="@dimen/standard_height"
+                    android:layout_marginEnd="@dimen/margin_end"
+                    android:contentDescription="@string/personal_data"
+                    android:padding="@dimen/padding_small"
+                    android:src="@drawable/user"
+                    app:tint="@color/colorOnCustomColor2Container" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="@integer/view_weight"
+                    android:fontFamily="@font/be_vietnam_pro_medium"
+                    android:text="@string/personal_data"
+                    android:textColor="@color/md_theme_onPrimaryFixed"
+                    android:textSize="@dimen/text_medium" />
+
+                <ImageView
+                    android:layout_width="@dimen/small_image_width"
+                    android:layout_height="@dimen/small_image_height"
+                    android:src="@drawable/right_arrow"
+                    app:tint="@color/md_theme_surfaceDim_highContrast" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/appSettingsItem"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_height"
+                android:layout_marginTop="@dimen/margin_top_small"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="0dp"
+                android:paddingEnd="@dimen/padding_standard">
+
+                <ImageView
+                    android:layout_width="@dimen/medium_width"
+                    android:layout_height="@dimen/standard_height"
+                    android:layout_marginEnd="@dimen/padding_standard"
+                    android:padding="@dimen/padding_small"
+                    android:src="@drawable/settings_24px"
+                    app:tint="@color/colorOnCustomColor2Container" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="@integer/view_weight"
+                    android:fontFamily="@font/be_vietnam_pro_medium"
+                    android:text="@string/settings_label_name"
+                    android:textColor="@color/md_theme_onPrimaryFixed"
+                    android:textSize="@dimen/text_medium" />
+
+                <ImageView
+                    android:layout_width="@dimen/small_image_width"
+                    android:layout_height="@dimen/small_image_height"
+                    android:src="@drawable/right_arrow"
+                    app:tint="@color/md_theme_surfaceDim_highContrast" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
