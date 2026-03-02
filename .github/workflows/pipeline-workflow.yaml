@@ -12,7 +12,7 @@ jobs:
 
       - uses: actions/setup-java@v4
         with:
-          distribution: murine
+          distribution: temurin
           java-version: 17
 
       - name: Grant Permission
