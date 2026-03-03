@@ -1,7 +1,15 @@
-package com.inesengel.travelapp.UI.components
+package com.inesengel.travelapp.UI.componentsimport
 
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.animation.AnimatedVisibility
+import com.inesengel.travelapp.UI.components.AppDrawer
+import com.inesengel.travelapp.UI.components.DeleteConfirmationDialog
+import com.inesengel.travelapp.UI.components.DestinationList
+import com.inesengel.travelapp.UI.components.EmptyStateView
+import com.inesengel.travelapp.UI.components.LoadingOverlay
+import com.inesengel.travelapp.UI.components.MainTopBar
+import com.inesengel.travelapp.UI.components.SearchSection
+import com.inesengel.travelapp.UI.components.TravelTypeSelector
+
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -9,13 +17,25 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.ModalNavigationDrawer
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.rememberDrawerState
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
@@ -38,7 +58,7 @@ fun MainDestinationListScreen(
     onUpdate: () -> Unit,
     onFavoritesClicked: () -> Unit,
     onShareClicked: (TravelDestination) -> Unit,
-    onNavigateToProfile: () -> Unit,
+    onNavigateToProfile: () -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     var searchQuery by remember { mutableStateOf("") }
@@ -112,7 +132,7 @@ private fun MainDestinationListContent(
     onFavoriteOptionClicked: (Int) -> Unit,
     onUpdate: () -> Unit,
     onShareClicked: (TravelDestination) -> Unit,
-    onNavigateToProfile: () -> Unit,
+    onNavigateToProfile: () -> Unit
 ) {
     val isEmpty = uiState.destinations.isEmpty() && !uiState.isLoading
 
@@ -135,8 +155,7 @@ private fun MainDestinationListContent(
                 }
             )
         }
-    )
-    {
+    ) {
         Scaffold(
             containerColor = colorResource(R.color.md_theme_surface),
             topBar = {
@@ -162,7 +181,7 @@ private fun MainDestinationListContent(
                 ) {
                     SearchSection(
                         searchQuery = searchQuery,
-                        onSearchQueryChanged = onSearchQueryChanged,
+                        onSearchQueryChanged = onSearchQueryChanged
                     )
                     TravelTypeSelector(
                         types = TravelType.entries,
@@ -245,7 +264,7 @@ private fun DestinationListItemPreview() {
     )
     DestinationList(
         destinations = mockDestinations,
-        onDestinationClicked = {} as (Int, String) -> Unit,
+        onDestinationClicked = { _, _ -> },
         onDestinationLongPress = {},
         onShareClicked = {},
         onFavoriteClicked = {},
@@ -281,7 +300,7 @@ private fun MainDestinationListContentPreview() {
         uiState = mockUiState,
         searchQuery = "Barcelona",
         onSearchQueryChanged = {},
-        onDestinationClicked = {} as (Int, String) -> Unit,
+        onDestinationClicked = { _, _ -> },
         onSendBroadcast = {},
         onLogout = {},
         onTravelTypeSelected = {},

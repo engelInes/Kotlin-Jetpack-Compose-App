@@ -5,13 +5,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.inesengel.travelapp.R
 import com.inesengel.travelapp.UI.model.NavigationState
-import com.inesengel.travelapp.core.model.RegisterFormState
-import com.inesengel.travelapp.core.usecase.RegisterUserUseCase
 import com.inesengel.travelapp.UI.view.utils.Constants.Validation.ONE_DIGIT_REGEX
 import com.inesengel.travelapp.UI.view.utils.Constants.Validation.ONE_LOWERCASE_CHARACTER_REGEX
 import com.inesengel.travelapp.UI.view.utils.Constants.Validation.ONE_SPECIAL_CHARACTER_REGEX
 import com.inesengel.travelapp.UI.view.utils.Constants.Validation.ONE_UPPERCASE_CHARACTER_REGEX
 import com.inesengel.travelapp.UI.view.utils.Constants.Validation.PASSWORD_LENGTH
+import com.inesengel.travelapp.core.model.RegisterFormState
+import com.inesengel.travelapp.core.usecase.RegisterUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow

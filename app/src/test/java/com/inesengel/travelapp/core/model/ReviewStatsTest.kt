@@ -2,8 +2,8 @@ package com.inesengel.travelapp.core.model
 
 import com.inesengel.travelapp.UI.model.RatingRowState
 import com.inesengel.travelapp.UI.model.ReviewStats
-
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class ReviewStatsTest {
