@@ -20,7 +20,7 @@ import project.model.TravelDestination
         )
     ],
     indices = [Index(DESTINATION_ID_KEY)]
-
+)
 
 data class UserReview(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
