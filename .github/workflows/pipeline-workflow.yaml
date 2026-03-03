@@ -27,5 +27,13 @@ jobs:
       - name: Run ktlint
         run: ./gradlew ktlintCheck
 
+      - name: Show ktlint errors
+        if: failure()
+        run: |
+          cat app/build/reports/ktlint/ktlintAndroidTestSourceSetCheck/ktlintAndroidTestSourceSetCheck.txt || true
+
       - name: Run detekt
         run: ./gradlew detekt
+
+      - name: Run tests
+        run: ./gradlew testDebugUnitTest

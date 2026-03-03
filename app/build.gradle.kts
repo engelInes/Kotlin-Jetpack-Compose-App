@@ -17,6 +17,9 @@ android {
         compose = true
     }
 
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+    }
     defaultConfig {
         applicationId = "com.inesengel.travelapp"
         minSdk = 34
@@ -38,6 +41,9 @@ android {
                 "proguard-rules.pro"
             )
         }
+        debug {
+            enableUnitTestCoverage = true
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -57,6 +63,8 @@ dependencies {
     implementation(libs.androidx.room.guava)
     implementation(libs.androidx.room.paging)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.core.ktx)
+    implementation(libs.androidx.junit.ktx)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -90,4 +98,6 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.test.runner)
     androidTestImplementation(libs.kotlinx.coroutines.test)
+    testImplementation("androidx.room:room-testing:2.6.1")
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
 }
