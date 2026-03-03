@@ -1,10 +1,11 @@
-name: Android Pipeline
+name: PR Checks
 
 on:
-  push:
+  pull_request:
 
 jobs:
   build:
+    name: build apk
     runs-on: ubuntu-latest
 
     steps:
