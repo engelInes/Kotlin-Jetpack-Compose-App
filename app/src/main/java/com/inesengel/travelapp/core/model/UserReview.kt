@@ -30,6 +30,3 @@ data class UserReview(
     val reviewText: String,
     val date: String
 )
-
-fun test( ) { println("bad formatting")
-}
