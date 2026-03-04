@@ -11,23 +11,40 @@ permissions:
 
 jobs:
   test-and-report:
-    uses: ./.github/workflows/android-setup.yaml
-    with:
-      task: testDebugUnitTest jacocoTestReport
-      upload-coverage: true
-
-  coverage-setup:
-    needs: test-and-report
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - run: chmod +x gradlew
+
+      - name: Run unit tests and generate coverage
+        run: ./gradlew testDebugUnitTest jacocoTestReport
+
+      - name: Upload coverage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml
+
+  coverage-setup:
+    needs: test-and-report
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download coverage artifact
+        uses: actions/download-artifact@v4
         with:
           name: coverage-report
           path: coverage
+
       - run: ls -R coverage
 
       - name: Install xmllint
