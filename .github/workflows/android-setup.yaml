@@ -6,6 +6,10 @@ on:
       task:
         required: true
         type: string
+      upload-coverage:
+        required: false
+        type: boolean
+        default: false
       show-ktlint-errors:
         required: false
         type: boolean
@@ -27,6 +31,13 @@ jobs:
 
       - name: Run Gradle task
         run: ./gradlew ${{ inputs.task }}
+
+      - name: Upload coverage
+        if: inputs.upload-coverage == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml
 
       - name: Show ktlint errors
         if: failure() && inputs.task == 'ktlintCheck'

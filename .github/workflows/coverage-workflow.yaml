@@ -2,8 +2,8 @@ name: Coverage Badge
 
 on:
   push:
-    branches:
-      - main
+  #    branches:
+  #      - main
   workflow_dispatch:
 
 permissions:
@@ -14,6 +14,7 @@ jobs:
     uses: ./.github/workflows/android-setup.yaml
     with:
       task: testDebugUnitTest jacocoTestReport
+      upload-coverage: true
 
   coverage-setup:
     needs: test-and-report
@@ -23,6 +24,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - uses: actions/download-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage
+
       - name: Install xmllint
         run: |
           sudo apt-get update
@@ -31,7 +37,7 @@ jobs:
       - name: Get coverage
         id: coverage
         run: |
-          FILE="app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml"
+          FILE="coverage/jacocoTestReport.xml"
 
           COVERED=$(xmllint --xpath "string(//counter[@type='LINE']/@covered)" $FILE)
           MISSED=$(xmllint --xpath "string(//counter[@type='LINE']/@missed)" $FILE)
