@@ -29,6 +29,8 @@ jobs:
         run: ./gradlew ${{ inputs.task }}
 
       - name: Show ktlint errors
-        if: failure() && inputs.show-ktlint-errors == true
-        run: |
-          cat app/build/reports/ktlint/ktlintAndroidTestSourceSetCheck/ktlintAndroidTestSourceSetCheck.txt || true
+        if: failure() && inputs.task == 'ktlintCheck'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ktlint-report
+          path: app/build/reports/ktlint/
