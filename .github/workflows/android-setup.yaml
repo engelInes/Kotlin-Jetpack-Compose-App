@@ -34,10 +34,12 @@ jobs:
 
       - name: Upload coverage
         if: inputs.upload-coverage == 'true'
-        uses: actions/upload-artifact@v4
+        run: ls -R app/build/reports/jacoco
+      - uses: actions/upload-artifact@v4
+        if: inputs.upload-coverage == 'true'
         with:
           name: coverage-report
-          path: app/build/reports/jacoco/**/*.xml
+          path: app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml
 
       - name: Show ktlint errors
         if: failure() && inputs.task == 'ktlintCheck'
