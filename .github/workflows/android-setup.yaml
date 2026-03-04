@@ -36,7 +36,7 @@ jobs:
         if: inputs.upload-coverage == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: coverage
+          name: coverage-report
           path: app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml
 
       - name: Show ktlint errors
