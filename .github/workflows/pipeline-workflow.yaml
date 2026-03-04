@@ -47,13 +47,18 @@ jobs:
           echo "RUN_URL=https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> report.txt
           
           TEXT=$(awk '{printf("%s\\n", $0)}' report.txt)
-          echo "::set-output name=body::$TEXT"
+          echo "body<<EOF" >> $GITHUB_OUTPUT
+          echo "$TEXT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Post result
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
-          BODY: ${{ steps.report.outputs.body }}
+          BUILD: ${{ needs.build.result }}
+          KT: ${{ needs.ktlint.result }}
+          DET: ${{ needs.detekt.result }}
+          UT: ${{ needs.unit-tests.result }}
         run: |
           COMMENT_BODY=$(cat <<EOF
           
@@ -63,7 +68,6 @@ jobs:
           Unit Tests: $UT
           
           See detailed logs: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
-          
           EOF
           )
           
@@ -71,4 +75,4 @@ jobs:
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer $GITHUB_TOKEN" \
             "https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${PR_NUMBER}/comments" \
-            -d "$(jq -R --arg body "$COMMENT_BODY" '{body: $body}')"
+            -d "$(jq -n --arg body "$COMMENT_BODY" '{body: $body}')"
