@@ -1,8 +1,7 @@
 name: PR Checks
 
 on:
-  push:
-  #pull_request:
+  pull_request:
 
 permissions:
   contents: read
