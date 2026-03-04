@@ -2,7 +2,6 @@ package com.inesengel.travelapp.UI.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.inesengel.travelapp.R
 import com.inesengel.travelapp.UI.model.NavigationState
 import com.inesengel.travelapp.core.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel

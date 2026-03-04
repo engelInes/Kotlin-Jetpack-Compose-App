@@ -23,13 +23,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import javax.inject.Inject
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
 import project.model.TravelDestination
 import project.model.TravelType
+import javax.inject.Inject
 
 @HiltViewModel
 class AddDestinationViewModel @Inject constructor(
@@ -83,10 +83,10 @@ class AddDestinationViewModel @Inject constructor(
             duration = duration,
             attractions = attractions,
             reviews = reviews,
-            isDataValid = name.isNotBlank()
-                    && country.isNotBlank()
-                    && price.toDoubleOrNull() != null
-                    && duration.toIntOrNull() != null
+            isDataValid = name.isNotBlank() &&
+                    country.isNotBlank() &&
+                    price.toDoubleOrNull() != null &&
+                    duration.toIntOrNull() != null
         )
     }.stateIn(
         scope = viewModelScope + Dispatchers.IO,

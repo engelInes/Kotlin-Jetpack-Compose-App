@@ -9,9 +9,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.inesengel.travelapp.R
 import com.inesengel.travelapp.UI.model.NavigationState
-import com.inesengel.travelapp.databinding.SplashScreenBinding
 import com.inesengel.travelapp.UI.view.utils.navigateTo
 import com.inesengel.travelapp.UI.viewmodel.SplashViewModel
+import com.inesengel.travelapp.databinding.SplashScreenBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -49,8 +49,6 @@ class SplashActivity : AppCompatActivity() {
         binding.apply {
             lottieAnimationView.setAnimation(R.raw.plane_loader)
             lottieAnimationView.repeatCount = 0
-
-
             lottieAnimationView.addAnimatorListener(object : Animator.AnimatorListener {
                 override fun onAnimationStart(animation: Animator) {}
 
@@ -67,7 +65,6 @@ class SplashActivity : AppCompatActivity() {
     private fun setupCollectors() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-
                 launch {
                     splashViewModel.playAnimationEvent.collect { shouldPlay ->
                         if (shouldPlay) {
