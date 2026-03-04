@@ -1,7 +1,13 @@
 name: PR Checks
 
 on:
-  pull_request:
+  push:
+  #pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+  actions: read
 
 jobs:
   build:
@@ -24,3 +30,46 @@ jobs:
     uses: ./.github/workflows/android-setup.yaml
     with:
       task: testDebugUnitTest
+
+  report:
+    needs: [ build, ktlint, detekt, unit-tests ]
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+      - name: Prepare report
+        id: report
+        run: |
+          echo "BUILD=${{ needs.build.result }}" >> report.txt
+          echo "KT=${{ needs.ktlint.result }}" >> report.txt
+          echo "DET=${{ needs.detekt.result }}" >> report.txt
+          echo "UT=${{ needs.unit-tests.result }}" >> report.txt
+          
+          echo "RUN_URL=https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> report.txt
+          
+          TEXT=$(awk '{printf("%s\\n", $0)}' report.txt)
+          echo "::set-output name=body::$TEXT"
+
+      - name: Post result
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          BODY: ${{ steps.report.outputs.body }}
+        run: |
+          COMMENT_BODY=$(cat <<EOF
+          
+          Build: $BUILD
+          Ktlint: $KT
+          Detekt: $DET
+          Unit Tests: $UT
+          
+          See detailed logs: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
+          
+          EOF
+          )
+          
+          curl -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: $GITHUB_TOKEN" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${PR_NUMBER}/comments" \
+            -d "$(jq -R --arg body "$COMMENT_BODY" '{body: $body}')"
