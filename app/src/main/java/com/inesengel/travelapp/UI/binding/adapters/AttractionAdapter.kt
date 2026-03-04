@@ -79,3 +79,4 @@ class AttractionDiffCallback : DiffUtil.ItemCallback<DestinationAttraction>() {
         return oldItem == newItem
     }
 }
+

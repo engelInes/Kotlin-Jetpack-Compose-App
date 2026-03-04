@@ -23,10 +23,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.inesengel.travelapp.R
+import com.inesengel.travelapp.UI.componentsimport.MainDestinationListScreen
 import com.inesengel.travelapp.UI.view.activities.AuthActivity
-import com.inesengel.travelapp.UI.components.MainDestinationListScreen
-import com.inesengel.travelapp.UI.view.utils.navigateTo
-import com.inesengel.travelapp.UI.viewmodel.MainDestinationListViewModel
 import com.inesengel.travelapp.UI.view.receivers.BatteryBroadcastReceiver
 import com.inesengel.travelapp.UI.view.services.ShareDestinationService
 import com.inesengel.travelapp.UI.view.services.UserActivityService
@@ -42,6 +40,8 @@ import com.inesengel.travelapp.UI.view.utils.Constants.Broadcasts.USER_TRACKING_
 import com.inesengel.travelapp.UI.view.utils.Constants.Navigation.ARG_DESTINATION_ID
 import com.inesengel.travelapp.UI.view.utils.Constants.Navigation.ARG_DESTINATION_NAME
 import com.inesengel.travelapp.UI.view.utils.Constants.UIViews.NOTIFICATION_TAG
+import com.inesengel.travelapp.UI.view.utils.navigateTo
+import com.inesengel.travelapp.UI.viewmodel.MainDestinationListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.getValue
 
@@ -106,7 +106,7 @@ class MainDestinationListFragment : Fragment() {
                     },
                     onNavigateToProfile = {
                         findNavController().navigate(R.id.profile_fragment)
-                    },
+                    }
                 )
             }
         }
@@ -141,7 +141,6 @@ class MainDestinationListFragment : Fragment() {
 
     private fun requestNotificationPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-
             if (ContextCompat.checkSelfPermission(
                     requireContext(),
                     Manifest.permission.POST_NOTIFICATIONS

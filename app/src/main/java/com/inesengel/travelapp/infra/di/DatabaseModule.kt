@@ -42,3 +42,4 @@ object DatabaseModule {
         return db.reviewDao()
     }
 }
+

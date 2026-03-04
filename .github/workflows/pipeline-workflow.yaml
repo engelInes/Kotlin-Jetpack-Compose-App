@@ -1,22 +1,26 @@
-name: Android Pipeline
+name: PR Checks
 
 on:
-  push:
+  pull_request:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    uses: ./.github/workflows/android-setup.yaml
+    with:
+      task: assembleDebug
 
-    steps:
-      - uses: actions/checkout@v4
+  ktlint:
+    uses: ./.github/workflows/android-setup.yaml
+    with:
+      task: ktlintCheck
+      show-ktlint-errors: true
 
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 17
+  detekt:
+    uses: ./.github/workflows/android-setup.yaml
+    with:
+      task: detekt
 
-      - name: Grant Permission
-        run: chmod +x gradlew
-
-      - name: Build Debug APK
-        run: ./gradlew assembleDebug
+  unit-tests:
+    uses: ./.github/workflows/android-setup.yaml
+    with:
+      task: testDebugUnitTest

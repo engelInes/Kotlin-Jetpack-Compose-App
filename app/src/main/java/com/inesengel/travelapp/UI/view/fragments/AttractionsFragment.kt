@@ -26,8 +26,6 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.inesengel.travelapp.R
 import com.inesengel.travelapp.UI.binding.adapters.AttractionAdapter
 import com.inesengel.travelapp.UI.model.PageIndicatorState
-import com.inesengel.travelapp.UI.viewmodel.DestinationTabViewModel
-import com.inesengel.travelapp.databinding.AttractionDetailsFragmentBinding
 import com.inesengel.travelapp.UI.view.utils.Constants.Navigation.ARG_DESTINATION_ID
 import com.inesengel.travelapp.UI.view.utils.Constants.Navigation.INVALID_DESTINATION_ID
 import com.inesengel.travelapp.UI.view.utils.Constants.Navigation.SINGLE_PAGE_INDICATOR
@@ -35,7 +33,9 @@ import com.inesengel.travelapp.UI.view.utils.Constants.Orientation.HORIZONTAL_MA
 import com.inesengel.travelapp.UI.view.utils.Constants.Orientation.VERTICAL_MARGIN
 import com.inesengel.travelapp.UI.view.utils.Constants.UIViews.GOOGLE_MAPS_TAG
 import com.inesengel.travelapp.UI.viewmodel.DestinationDetailViewModel
+import com.inesengel.travelapp.UI.viewmodel.DestinationTabViewModel
 import com.inesengel.travelapp.core.model.MapLocation
+import com.inesengel.travelapp.databinding.AttractionDetailsFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -239,10 +239,11 @@ class AttractionsFragment :
             imageView.setColorFilter(
                 ContextCompat.getColor(
                     requireContext(),
-                    if (isActive)
+                    if (isActive) {
                         R.color.md_theme_primary
-                    else
+                    } else {
                         R.color.md_theme_onSurfaceVariant
+                    }
                 )
             )
         }
