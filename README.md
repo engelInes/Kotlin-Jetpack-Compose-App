@@ -29,4 +29,4 @@ You can also seek inspiration from the below readme files:
 - [Visual Studio Code](https://github.com/Microsoft/vscode)
 - [Chakra Core](https://github.com/Microsoft/ChakraCore)
 
-- ![Coverage](COVERAGE_BADGE)
+- ![Coverage](https://img.shields.io/badge/coverage-0%25-red)
