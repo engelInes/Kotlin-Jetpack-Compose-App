@@ -10,26 +10,20 @@ permissions:
   contents: write
 
 jobs:
-  coverage:
+  test-and-report:
+    uses: ./.github/workflows/android-setup.yaml
+    with:
+      task: testDebugUnitTest jacocoTestReport
+
+  coverage-setup:
+    needs: test-and-report
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup jdk
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      - name: Grant permission
-        run: chmod +x gradlew
-
-      - name: Run tests with coverage
-        run: ./gradlew testDebugUnitTest jacocoTestReport
-
-      - name: Extract coverage
+      - name: Get coverage
         id: coverage
         run: |
           FILE="app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml"

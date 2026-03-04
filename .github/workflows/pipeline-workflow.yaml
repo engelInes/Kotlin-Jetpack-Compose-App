@@ -5,35 +5,22 @@ on:
 
 jobs:
   build:
-    name: build apk
-    runs-on: ubuntu-latest
+    uses: ./.github/workflows/android-setup.yaml
+    with:
+      task: assembleDebug
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  ktlint:
+    uses: ./.github/workflows/android-setup.yaml
+    with:
+      task: ktlintCheck
+      show-ktlint-errors: true
 
-      - name: Setup jdk
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 17
+  detekt:
+    uses: ./.github/workflows/android-setup.yaml
+    with:
+      task: detekt
 
-      - name: Grant Permission
-        run: chmod +x gradlew
-
-      - name: Build Debug APK
-        run: ./gradlew assembleDebug
-
-      - name: Run ktlint
-        run: ./gradlew ktlintCheck
-
-      - name: Show ktlint errors
-        if: failure()
-        run: |
-          cat app/build/reports/ktlint/ktlintAndroidTestSourceSetCheck/ktlintAndroidTestSourceSetCheck.txt || true
-
-      - name: Run detekt
-        run: ./gradlew detekt
-
-      - name: Run tests
-        run: ./gradlew testDebugUnitTest
+  unit-tests:
+    uses: ./.github/workflows/android-setup.yaml
+    with:
+      task: testDebugUnitTest
