@@ -68,7 +68,7 @@ jobs:
                   echo "$commits" >> $GITHUB_OUTPUT
                   echo "EOF" >> $GITHUB_OUTPUT
 
-            - name: Create tag
+            - name: Create Release Tag
               run: |
                   git tag ${{ steps.release.outputs.tag }}
                   git push origin ${{ steps.release.outputs.tag }}
