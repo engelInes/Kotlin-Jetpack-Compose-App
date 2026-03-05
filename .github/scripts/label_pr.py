@@ -31,7 +31,7 @@ for f in files:
     if "test/" in name:
         labels.add("test")
 
-    if "/github/" in name:
+    if ".github/" in name:
         labels.add("ci")
 
 if labels:
