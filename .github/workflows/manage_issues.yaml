@@ -2,7 +2,7 @@ name: Issues Manager
 
 on:
     schedule:
-        - cron: "42 12 * * *"
+        - cron: "10 13 * * *"
     workflow_dispatch:
 
 permissions:
@@ -17,17 +17,16 @@ jobs:
               env:
                   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
-                  issues=$(gh api repos/${GITHUB_REPOSITORY}/issues \
-                    --jq '.[] | select(.state=="open") | {number: .number, title: .title, updated_at: .updated_at}')
+                  issues=$(gh api repos/${GITHUB_REPOSITORY}/issues --jq "[.[] | select(.state==\"open\") | {number: .number, title: .title, updated_at: .updated_at}]")
 
                   now=$(date +%s)
                   WARNINGS=""
                   TO_CLOSE=""
 
-                  echo "$issues" | jq -c '.' | while read -r issue; do
-                    num=$(echo "$issue" | jq -r '.number')
-                    title=$(echo "$issue" | jq -r '.title')
-                    updated=$(echo "$issue" | jq -r '.updated_at')
+                  echo "$issues" | jq -c '.[]' | while read -r row; do
+                    num=$(echo "$row" | jq -r '.number')
+                    title=$(echo "$row" | jq -r '.title')
+                    updated=$(echo "$row" | jq -r '.updated_at')
                     updated_sec=$(date -d "$updated" +%s)
                     diff=$(( (now - updated_sec) / 3600 ))
 
