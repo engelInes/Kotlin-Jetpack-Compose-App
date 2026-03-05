@@ -11,6 +11,7 @@ import jakarta.inject.Singleton
 class GeocodingRepositoryImpl @Inject constructor(
     private val geocoder: Geocoder
 ) : GeocodingRepository {
+    Log.d("pr-label test", "GeocodingRepositoryImpl created")
     override suspend fun getCoordinatesFromAddress(address: String): MapLocation? {
         return try {
             val addresses = geocoder.getFromLocationName(
