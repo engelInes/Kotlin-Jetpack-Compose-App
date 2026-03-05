@@ -1,40 +1,80 @@
 name: Issues Manager
 
 on:
-  schedule:
-    - cron: "10 12 * * *"
-  workflow_dispatch:
+    schedule:
+        - cron: "42 12 * * *"
+    workflow_dispatch:
 
 permissions:
-  issues: write
+    issues: write
 
 jobs:
-  stale-check:
-    runs-on: ubuntu-latest
+    report-issues:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Find inactive issues
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          issues=$(gh api repos/${GITHUB_REPOSITORY}/issues --jq '.[] | select(.state=="open") | "\(.number) \(.updated_at)"')
+        steps:
+            - name: Prepare report
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  issues=$(gh api repos/${GITHUB_REPOSITORY}/issues \
+                    --jq '.[] | select(.state=="open") | {number: .number, title: .title, updated_at: .updated_at}')
 
-          now=$(date +%s)
+                  now=$(date +%s)
+                  WARNINGS=""
+                  TO_CLOSE=""
 
-          echo "$issues" | while read num date; do
-            updated=$(date -d "$date" +%s)
-            diff=$(( (now - updated) / 3600 ))
+                  echo "$issues" | jq -c '.' | while read -r issue; do
+                    num=$(echo "$issue" | jq -r '.number')
+                    title=$(echo "$issue" | jq -r '.title')
+                    updated=$(echo "$issue" | jq -r '.updated_at')
+                    updated_sec=$(date -d "$updated" +%s)
+                    diff=$(( (now - updated_sec) / 3600 ))
 
-            if [ $diff -gt 3 ]; then
-              gh api repos/${GITHUB_REPOSITORY}/issues/$num \
-                -X PATCH \
-                -H "Accept: application/vnd.github+json" \
-                -f state=closed
+                    if [ $diff -gt 3 ]; then
+                      TO_CLOSE="$TO_CLOSE\n- #$num: $title (last updated $diff hours ago)"
 
-            elif [ $diff -gt 1 ]; then
-              gh api repos/${GITHUB_REPOSITORY}/issues/$num/comments \
-                -X POST \
-                -H "Accept: application/vnd.github+json" \
-                -f body="This issue has been inactive for more than 1 hour and will be closed soon."
-            fi
-          done
+                      gh api repos/${GITHUB_REPOSITORY}/issues/$num \
+                        -X PATCH \
+                        -H "Accept: application/vnd.github+json" \
+                        -f state=closed
+
+                    elif [ $diff -gt 1 ]; then
+                      WARNINGS="$WARNINGS\n- #$num: $title (last updated $diff hours ago)"
+
+                      gh api repos/${GITHUB_REPOSITORY}/issues/$num/comments \
+                        -X POST \
+                        -H "Accept: application/vnd.github+json" \
+                        -f body="This issue has been inactive for more than 1 hour and will be closed soon."
+                    fi
+                  done
+
+                  REPORT="## Issues Report\n\n"
+                  if [ -n "$WARNINGS" ]; then
+                    REPORT="$REPORT### Warnings (inactive > 1 hour)\n$WARNINGS\n\n"
+                  fi
+                  if [ -n "$TO_CLOSE" ]; then
+                    REPORT="$REPORT### Closed (inactive > 3 hours)\n$TO_CLOSE\n\n"
+                  fi
+                  if [ -z "$WARNINGS" ] && [ -z "$TO_CLOSE" ]; then
+                    REPORT="$REPORTNo issues to report."
+                  fi
+
+                  echo -e "$REPORT" > report.txt
+
+            - name: Upload report
+              uses: actions/upload-artifact@v4
+              with:
+                  name: issues-report
+                  path: report.txt
+
+            - name: Post issues
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  REPORT_BODY=$(cat report.txt)
+                  gh api repos/${GITHUB_REPOSITORY}/issues \
+                    -X POST \
+                    -H "Accept: application/vnd.github+json" \
+                    -f title="Daily Inactive Issues Report" \
+                    -f body="$REPORT_BODY"

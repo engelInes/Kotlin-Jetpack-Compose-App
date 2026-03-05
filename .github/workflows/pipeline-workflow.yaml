@@ -35,7 +35,7 @@ jobs:
       task: testDebugUnitTest
 
   report:
-    needs: [ build, ktlint, detekt, unit-tests ]
+    needs: [build, ktlint, detekt, unit-tests]
     runs-on: ubuntu-latest
     if: always()
 
@@ -49,9 +49,9 @@ jobs:
           echo "KT=${{ needs.ktlint.result }}" >> report.txt
           echo "DET=${{ needs.detekt.result }}" >> report.txt
           echo "UT=${{ needs.unit-tests.result }}" >> report.txt
-          
+
           echo "RUN_URL=https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> report.txt
-          
+
           TEXT=$(awk '{printf("%s\\n", $0)}' report.txt)
           echo "body<<EOF" >> $GITHUB_OUTPUT
           echo "$TEXT" >> $GITHUB_OUTPUT
@@ -68,20 +68,20 @@ jobs:
           UT: ${{ needs.unit-tests.result }}
         run: |
           COMMENT_BODY=$(cat <<EOF
-          
+
           Build: $BUILD
           Ktlint: $KT
           Detekt: $DET
           Unit Tests: $UT
-          
+
           See detailed logs: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
           EOF
           )
-          
+
           gh pr comment $PR_NUMBER --body "$COMMENT_BODY"
 
   create-issue:
-    needs: [ build, ktlint, detekt, unit-tests ]
+    needs: [build, ktlint, detekt, unit-tests]
     runs-on: ubuntu-latest
     if: |
       always() && 
@@ -97,23 +97,23 @@ jobs:
           UT: ${{ needs.unit-tests.result }}
         run: |
           FAILURES=""
-          
+
           if [ "$BUILD" != "success" ]; then
             FAILURES="$FAILURES\n- Build"
           fi
-          
+
           if [ "$KT" != "success" ]; then
             FAILURES="$FAILURES\n- Ktlint"
           fi
-          
+
           if [ "$DET" != "success" ]; then
             FAILURES="$FAILURES\n- Detekt"
           fi
-          
+
           if [ "$UT" != "success" ]; then
             FAILURES="$FAILURES\n- Unit Tests"
           fi
-          
+
           if [ "$FAILURES" != "" ]; then
             gh api repos/${GITHUB_REPOSITORY}/issues \
               -X POST \

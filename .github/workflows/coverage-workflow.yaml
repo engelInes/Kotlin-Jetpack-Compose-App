@@ -59,10 +59,10 @@ jobs:
 
           COVERED=$(xmllint --xpath "string(//counter[@type='LINE']/@covered)" $FILE)
           MISSED=$(xmllint --xpath "string(//counter[@type='LINE']/@missed)" $FILE)
-          
+
           TOTAL=$((COVERED + MISSED))
           PERCENT=$((100 * COVERED / TOTAL))
-          
+
           echo "coverage=$PERCENT" >> $GITHUB_OUTPUT
 
       - name: Update README badge
@@ -76,7 +76,7 @@ jobs:
           else
             COLOR="red"
           fi
-          
+
           BADGE="https://img.shields.io/badge/coverage-${PERCENT}%25-${COLOR}"
           sed -i "s|COVERAGE_BADGE|$BADGE|g" README.md
 
