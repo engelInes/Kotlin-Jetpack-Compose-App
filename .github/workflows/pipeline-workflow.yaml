@@ -76,7 +76,7 @@ jobs:
           EOF
           )
           
-          gh pr comment ${{ $PR_NUMBER }} --body "$COMMENT_BODY"
+          gh pr comment $PR_NUMBER --body "$COMMENT_BODY"
 
   create-issue:
     needs: [ build, ktlint, detekt, unit-tests ]
@@ -85,37 +85,37 @@ jobs:
       always() && 
       github.event_name == 'push' && 
       (needs.build.result != 'success' || needs.ktlint.result != 'success' || needs.detekt.result != 'success' || needs.unit-tests.result != 'success')
-      steps:
+    steps:
       - name: Create issue
         env:
-           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-           BUILD: ${{ needs.build.result }}
-           KT: ${{ needs.ktlint.result }}
-           DET: ${{ needs.detekt.result }}
-           UT: ${{ needs.unit-tests.result }}
-         run: |
-           FAILURES=""
-
-           if [ "$BUILD" != "success" ]; then
-             FAILURES="$FAILURES\n- Build"
-           fi
-
-           if [ "$KT" != "success" ]; then
-             FAILURES="$FAILURES\n- Ktlint"
-           fi
-
-           if [ "$DET" != "success" ]; then
-             FAILURES="$FAILURES\n- Detekt"
-           fi
-
-           if [ "$UT" != "success" ]; then
-             FAILURES="$FAILURES\n- Unit Tests"
-           fi
-
-           if [ "$FAILURES" != "" ]; then
-             gh api repos/${GITHUB_REPOSITORY}/issues \
-               -X POST \
-               -H "Accept: application/vnd.github+json" \
-               -f title="Failure on main branch" \
-               -f body="Failures detected:$FAILURES\n\nRun: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
-           fi
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BUILD: ${{ needs.build.result }}
+          KT: ${{ needs.ktlint.result }}
+          DET: ${{ needs.detekt.result }}
+          UT: ${{ needs.unit-tests.result }}
+        run: |
+          FAILURES=""
+          
+          if [ "$BUILD" != "success" ]; then
+            FAILURES="$FAILURES\n- Build"
+          fi
+          
+          if [ "$KT" != "success" ]; then
+            FAILURES="$FAILURES\n- Ktlint"
+          fi
+          
+          if [ "$DET" != "success" ]; then
+            FAILURES="$FAILURES\n- Detekt"
+          fi
+          
+          if [ "$UT" != "success" ]; then
+            FAILURES="$FAILURES\n- Unit Tests"
+          fi
+          
+          if [ "$FAILURES" != "" ]; then
+            gh api repos/${GITHUB_REPOSITORY}/issues \
+              -X POST \
+              -H "Accept: application/vnd.github+json" \
+              -f title="Failure on main branch" \
+              -f body="Failures detected:$FAILURES\n\nRun: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          fi
