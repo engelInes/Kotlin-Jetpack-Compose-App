@@ -57,7 +57,7 @@ jobs:
                     REPORT="$REPORT### Closed (inactive > 3 hours)\n$TO_CLOSE\n\n"
                   fi
                   if [ -z "$WARNINGS" ] && [ -z "$TO_CLOSE" ]; then
-                    REPORT="$REPORTNo issues to report."
+                    REPORT="$REPORT No issues to report."
                   fi
 
                   echo -e "$REPORT" > report.txt
