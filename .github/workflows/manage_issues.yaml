@@ -1,0 +1,40 @@
+name: Issues Manager
+
+on:
+  schedule:
+    - cron: "10 12 * * *"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  stale-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Find inactive issues
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          issues=$(gh api repos/${GITHUB_REPOSITORY}/issues --jq '.[] | select(.state=="open") | "\(.number) \(.updated_at)"')
+
+          now=$(date +%s)
+
+          echo "$issues" | while read num date; do
+            updated=$(date -d "$date" +%s)
+            diff=$(( (now - updated) / 3600 ))
+
+            if [ $diff -gt 3 ]; then
+              gh api repos/${GITHUB_REPOSITORY}/issues/$num \
+                -X PATCH \
+                -H "Accept: application/vnd.github+json" \
+                -f state=closed
+
+            elif [ $diff -gt 1 ]; then
+              gh api repos/${GITHUB_REPOSITORY}/issues/$num/comments \
+                -X POST \
+                -H "Accept: application/vnd.github+json" \
+                -f body="This issue has been inactive for more than 1 hour and will be closed soon."
+            fi
+          done
